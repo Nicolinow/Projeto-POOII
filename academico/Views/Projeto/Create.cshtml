@@ -1,0 +1,208 @@
+﻿@model academico.Models.Projeto
+
+@{
+    ViewData["Title"] = "Novo Projeto";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="header-section mb-5 text-center">
+                <div class="icon-box mb-2">
+                    <i class="bi bi-rocket-takeoff"></i>
+                </div>
+                <h1 class="fw-bold text-dark m-0">Novo Projeto</h1>
+                <p class="text-muted">Preencha os dados conforme as regras do modelo</p>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="form-container shadow-lg p-5 bg-white border-top border-primary border-5">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group-custom">
+                        <label class="inp">
+                            <input asp-for="Nome" placeholder="&nbsp;" />
+                            <span class="label-text">Nome do Projeto</span>
+                            <span class="focus-bg"></span>
+                        </label>
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="form-group-custom">
+                                <label class="inp">
+                                    <input asp-for="Sigla" placeholder="&nbsp;" />
+                                    <span class="label-text">Sigla</span>
+                                    <span class="focus-bg"></span>
+                                </label>
+                                <span asp-validation-for="Sigla" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group-custom">
+                                <label class="inp">
+                                    <input asp-for="Ano" type="number" placeholder="&nbsp;" />
+                                    <span class="label-text">Ano</span>
+                                    <span class="focus-bg"></span>
+                                </label>
+                                <span asp-validation-for="Ano" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-custom">
+                        <label class="inp">
+                            <select asp-for="Status"
+                                    asp-items="Html.GetEnumSelectList<academico.Models.StatusProjeto>()"
+                                    class="custom-select" required>
+                                <option value="" disabled selected></option>
+                            </select>
+                            <span class="label-text select-label">Status do Projeto</span>
+                            <span class="focus-bg"></span>
+                        </label>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+
+                    <div class="pt-3">
+                        <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm fw-bold">
+                            CRIAR PROJETO
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-4 text-center">
+                <a asp-action="Index" class="text-decoration-none text-muted small border-bottom">
+                    <i class="bi bi-arrow-left"></i> Voltar para a listagem
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --primary: #0077FF;
+        --dark: #1a1a1a;
+        --bg-input: rgba(0, 0, 0, 0.03);
+    }
+
+    /* --- Título --- */
+    .header-section .icon-box {
+        font-size: 2.8rem;
+        color: var(--primary);
+    }
+
+    .title-underline {
+        width: 40px;
+        height: 4px;
+        background: var(--primary);
+        margin: 10px auto;
+        border-radius: 10px;
+    }
+
+    /* --- Estrutura Base --- */
+    .form-container {
+        border-radius: 15px;
+    }
+
+    .form-group-custom {
+        margin-bottom: 1.8rem;
+        position: relative;
+    }
+
+    .inp {
+        position: relative;
+        width: 100%;
+        display: block;
+        background: var(--bg-input);
+        border-radius: 4px 4px 0 0;
+        overflow: hidden;
+    }
+
+        .inp .label-text {
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.4);
+            font-weight: 500;
+            transition: all .2s ease;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* --- Inputs e Selects --- */
+        .inp input, .custom-select {
+            width: 100%;
+            border: 0;
+            padding: 26px 15px 10px 15px;
+            height: 65px;
+            font-size: 16px;
+            background: transparent;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
+        }
+
+            /* Animação do Label (Input e Select) */
+            .inp input:focus + .label-text,
+            .inp input:not(:placeholder-shown) + .label-text,
+            .custom-select:focus + .label-text,
+            .custom-select:valid + .label-text {
+                transform: translate3d(0, -15px, 0) scale(.75);
+                color: var(--primary);
+            }
+
+        /* Fundo expansível */
+        .inp .focus-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.04);
+            z-index: 1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .3s ease;
+        }
+
+        .inp input:focus ~ .focus-bg, .custom-select:focus ~ .focus-bg {
+            transform: scaleX(1);
+        }
+
+        .inp input:focus, .custom-select:focus {
+            outline: none;
+            box-shadow: inset 0 -2px 0 var(--primary);
+        }
+
+    /* Customização do Select */
+    .custom-select {
+        appearance: none;
+        cursor: pointer;
+    }
+
+        /* Estilização da primeira opção (Placeholder do Select) */
+        .custom-select option:first-child {
+            color: rgba(0,0,0,0.3);
+        }
+
+    .text-danger {
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin-top: 5px;
+        display: block;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
