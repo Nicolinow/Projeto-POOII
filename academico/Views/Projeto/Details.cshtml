@@ -1,48 +1,166 @@
 ﻿@model academico.Models.Projeto
 
 @{
-    ViewData["Title"] = "Detalhes";
+    ViewData["Title"] = "Detalhes do Projeto";
 }
 
-<h1>Details</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="header-section mb-5 text-center">
+                <div class="icon-box-info mb-2">
+                    <i class="bi bi-info-circle"></i>
+                </div>
+                <h1 class="fw-bold text-dark m-0">Detalhes do Projeto</h1>
+                <p class="text-muted small">ID do Projeto: #@Model.ProjetoId</p>
+                <div class="title-underline-info"></div>
+            </div>
 
-<div>
-    <h4>Projeto</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjetoId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProjetoId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sigla)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sigla)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ano)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ano)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
+            <div class="form-container shadow-lg p-5 bg-white border-top border-info border-5 position-relative">
+
+                <div class="watermark-id">#@Model.ProjetoId</div>
+
+                <div class="form-group-custom">
+                    <label class="inp readonly-view">
+                        <input value="@Model.Nome" readonly />
+                        <span class="label-text">Nome do Projeto</span>
+                    </label>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group-custom">
+                            <label class="inp readonly-view">
+                                <input value="@Model.Sigla" class="text-uppercase" readonly />
+                                <span class="label-text">Sigla</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group-custom">
+                            <label class="inp readonly-view">
+                                <input value="@Model.Ano" readonly />
+                                <span class="label-text">Ano</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group-custom">
+                    <label class="inp readonly-view">
+                        <input value="@Model.Status" readonly />
+                        <span class="label-text">Status Atual</span>
+                    </label>
+                </div>
+
+                <div class="row g-2 mt-4">
+                    <div class="col-md-6">
+                        <a asp-action="Edit" asp-route-id="@Model.ProjetoId" class="btn btn-primary btn-lg w-100 shadow-sm fw-bold">
+                            <i class="bi bi-pencil-square"></i> EDITAR
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-lg w-100">
+                            VOLTAR
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjetoId }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<style>
+    :root {
+        --info-color: #0DCAF0;
+        --primary: #0077FF;
+        --dark: #1a1a1a;
+        --bg-readonly: rgba(0, 0, 0, 0.02);
+    }
+
+    .watermark-id {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: rgba(0,0,0,0.03);
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .icon-box-info {
+        font-size: 2.8rem;
+        color: var(--info-color);
+    }
+
+    .title-underline-info {
+        width: 40px;
+        height: 4px;
+        background: var(--info-color);
+        margin: 10px auto;
+        border-radius: 10px;
+    }
+
+    .form-container {
+        border-radius: 15px;
+        position: relative;
+    }
+
+    .form-group-custom {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .inp {
+        position: relative;
+        width: 100%;
+        display: block;
+        background: var(--bg-readonly);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .inp .label-text {
+        position: absolute;
+        top: 20px;
+        left: 15px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.4);
+        font-weight: 500;
+        transform: translate3d(0, -15px, 0) scale(.75);
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .inp input {
+        width: 100%;
+        border: 0;
+        padding: 26px 15px 10px 15px;
+        height: 65px;
+        font-size: 16px;
+        background: transparent;
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+        color: var(--dark);
+        cursor: default;
+    }
+
+    .inp input:focus {
+        outline: none;
+    }
+
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+
+    .btn-primary {
+        background-color: var(--primary);
+        border: none;
+        transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3);
+    }
+</style>

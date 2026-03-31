@@ -89,7 +89,6 @@
         --bg-input: rgba(0, 0, 0, 0.03);
     }
 
-    /* --- Título --- */
     .header-section .icon-box {
         font-size: 2.8rem;
         color: var(--primary);
@@ -103,7 +102,6 @@
         border-radius: 10px;
     }
 
-    /* --- Estrutura Base --- */
     .form-container {
         border-radius: 15px;
     }
@@ -122,74 +120,69 @@
         overflow: hidden;
     }
 
-        .inp .label-text {
-            position: absolute;
-            top: 20px;
-            left: 15px;
-            font-size: 16px;
-            color: rgba(0, 0, 0, 0.4);
-            font-weight: 500;
-            transition: all .2s ease;
-            pointer-events: none;
-            z-index: 3;
-        }
+    .inp .label-text {
+        position: absolute;
+        top: 20px;
+        left: 15px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.4);
+        font-weight: 500;
+        transition: all .2s ease;
+        pointer-events: none;
+        z-index: 3;
+    }
 
-        /* --- Inputs e Selects --- */
-        .inp input, .custom-select {
-            width: 100%;
-            border: 0;
-            padding: 26px 15px 10px 15px;
-            height: 65px;
-            font-size: 16px;
-            background: transparent;
-            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-            color: var(--dark);
-            position: relative;
-            z-index: 2;
-        }
+    .inp input, .custom-select {
+        width: 100%;
+        border: 0;
+        padding: 26px 15px 10px 15px;
+        height: 65px;
+        font-size: 16px;
+        background: transparent;
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        color: var(--dark);
+        position: relative;
+        z-index: 2;
+    }
 
-            /* Animação do Label (Input e Select) */
-            .inp input:focus + .label-text,
-            .inp input:not(:placeholder-shown) + .label-text,
-            .custom-select:focus + .label-text,
-            .custom-select:valid + .label-text {
-                transform: translate3d(0, -15px, 0) scale(.75);
-                color: var(--primary);
-            }
+    .inp input:focus + .label-text,
+    .inp input:not(:placeholder-shown) + .label-text,
+    .custom-select:focus + .label-text,
+    .custom-select:valid + .label-text {
+        transform: translate3d(0, -15px, 0) scale(.75);
+        color: var(--primary);
+    }
 
-        /* Fundo expansível */
-        .inp .focus-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.04);
-            z-index: 1;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .3s ease;
-        }
+    .inp .focus-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.04);
+        z-index: 1;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .3s ease;
+    }
 
-        .inp input:focus ~ .focus-bg, .custom-select:focus ~ .focus-bg {
-            transform: scaleX(1);
-        }
+    .inp input:focus ~ .focus-bg, .custom-select:focus ~ .focus-bg {
+        transform: scaleX(1);
+    }
 
-        .inp input:focus, .custom-select:focus {
-            outline: none;
-            box-shadow: inset 0 -2px 0 var(--primary);
-        }
+    .inp input:focus, .custom-select:focus {
+        outline: none;
+        box-shadow: inset 0 -2px 0 var(--primary);
+    }
 
-    /* Customização do Select */
     .custom-select {
         appearance: none;
         cursor: pointer;
     }
 
-        /* Estilização da primeira opção (Placeholder do Select) */
-        .custom-select option:first-child {
-            color: rgba(0,0,0,0.3);
-        }
+    .custom-select option:first-child {
+        color: rgba(0,0,0,0.3);
+    }
 
     .text-danger {
         font-size: 0.75rem;
